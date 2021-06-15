@@ -1,0 +1,21 @@
+import cervezas.*
+
+test "graduacion de cerveza" {
+	var c1 = new MarcaCerveza(pais = "Argentina", porcentajeAlcohol = 10)
+	assert.equals(c1.graduacionPorLt(), 0.1)
+}
+
+test "graduacion de cerveza rubia" {
+	var cr1 = new MarcaCervezaRubia(pais = "Brazil", graduacionPorLt = 0.5)
+	assert.equals(cr1.graduacionPorLt(), 0.5)
+}
+
+test "graduacion de cerveza negra" {
+	var cn1 = new MarcaCervezaNegra(pais = "Holanda", graduacionMundial = 0.3, lupuloPorLt = 10)
+	assert.equals(cn1.graduacionPorLt(), 0.2)
+}
+
+test "graduacion de cerveza roja" {
+	var cro1 = new MarcaCervezaRoja(pais = "Belgica", graduacionMundial = 0.3, lupuloPorLt = 10)
+	assert.equals(cro1.graduacionPorLt(), 0.25)
+}
