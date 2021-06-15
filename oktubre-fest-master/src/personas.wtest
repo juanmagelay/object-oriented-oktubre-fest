@@ -1,0 +1,14 @@
+import personas.*
+import jarra.*
+import cervezas.*
+
+test "persona ebria" {
+	var c1 = new MarcaCerveza(pais = "Argentina", porcentajeAlcohol = 10)
+	var c2 = new MarcaCervezaRubia(pais = "Brazil", graduacionPorLt = 0.5)
+	var j1 = new Jarra(capacidadEnLt = 1, marcaDeCerveza = c1) //  0.1 * 1 = 0.1 
+	var j2 = new Jarra(capacidadEnLt = 2, marcaDeCerveza = c2) // 0.5 * 2 = 1 
+	//Total de litros de alcohol = 0.1 + 1 = 1.1
+	// Alcohol * peso = 1.1 * 10 = 11 (es mayor que 10)
+	var p1 = new Persona(peso = 10, jarrasCompradas = [j1,j2], nivelDeAguante = 10)
+	assert.that(p1.estaEbria())
+}
