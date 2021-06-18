@@ -10,5 +10,22 @@ test "persona ebria" {
 	//Total de litros de alcohol = 0.1 + 1 = 1.1
 	// Alcohol * peso = 1.1 * 10 = 11 (es mayor que 10)
 	var p1 = new Persona(peso = 10, jarrasCompradas = [j1,j2], nivelDeAguante = 10)
+	assert.equals(p1.totalDeAlcohol(), 1.1)
 	assert.that(p1.estaEbria())
+}
+
+test "persona le gustan" {
+	var c1 = new MarcaCerveza(lupuloPorLt = 5, pais = "Argentina", porcentajeAlcohol = 10)
+	var c2 = new MarcaCervezaRubia(lupuloPorLt = 2, pais = "Brazil", graduacionPorLt = 0.9)
+	var j1 = new Jarra(capacidadEnLt = 1, marcaDeCerveza = c1) //  0.1 * 1 = 0.1 
+	var j2 = new Jarra(capacidadEnLt = 2, marcaDeCerveza = c2) // 0.5 * 2 = 1 
+	
+	var p2 = new Persona(nacionalidad = "belga", peso = 10, jarrasCompradas = [j1,j2,j1], nivelDeAguante = 10)
+	assert.equals(p2.leGustan([c1, c2, c1]), [c1, c1])	
+	
+	var p3 = new Persona(nacionalidad = "checo", peso = 10, jarrasCompradas = [j1,j2,j1], nivelDeAguante = 10)
+	assert.equals(p3.leGustan([c1, c2, c1]), [c2])	
+	
+	var p4 = new Persona(nacionalidad = "aleman", peso = 10, jarrasCompradas = [j1,j2,j1], nivelDeAguante = 10)
+	assert.equals(p4.leGustan([c1, c2, c1]), [c1, c2, c1])	
 }

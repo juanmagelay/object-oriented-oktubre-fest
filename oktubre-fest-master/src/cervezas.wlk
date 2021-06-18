@@ -1,6 +1,7 @@
 class MarcaCerveza {
-	const property lupuloPorLt = 0
+	var property lupuloPorLt = 0
 	const property pais
+	var property nombre = "sin nombre"
 	
 	var property porcentajeAlcohol = 0
 	
