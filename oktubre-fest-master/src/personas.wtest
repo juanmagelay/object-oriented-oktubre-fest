@@ -1,6 +1,7 @@
 import personas.*
 import jarra.*
 import cervezas.*
+import carpa.*
 
 test "persona ebria" {
 	var c1 = new MarcaCerveza(pais = "Argentina", porcentajeAlcohol = 10)
@@ -28,4 +29,15 @@ test "persona le gustan" {
 	
 	var p4 = new Persona(nacionalidad = "aleman", peso = 10, jarrasCompradas = [j1,j2,j1], nivelDeAguante = 10)
 	assert.equals(p4.leGustan([c1, c2, c1]), [c1, c2, c1])	
+}
+
+test "persona quiere entrar carpa" {
+	var c1 = new MarcaCerveza(lupuloPorLt = 5, pais = "Argentina", porcentajeAlcohol = 10)
+	var j1 = new Jarra(capacidadEnLt = 1, marcaDeCerveza = c1) //  0.1 * 1 = 0.1 
+	var ca1 = new Carpa(cantidadDePersonas = 3, limiteGente = 10, musicaTradicional = false, marcaVendida = c1)
+	var p2 = new Persona(musicaTradicional = false, nacionalidad = "belga", peso = 10, jarrasCompradas = [j1], nivelDeAguante = 10)
+	var p3 = new Aleman(musicaTradicional = false, nacionalidad = "aleman", peso = 10, jarrasCompradas = [j1], nivelDeAguante = 10)
+	assert.equals(p2.leGustan([c1]), [c1])	
+	assert.that(p2.quiereEntrar(ca1))	
+	assert.notThat(p3.quiereEntrar(ca1)) //Porque la cantidad de personas de la carpa es impar.
 }

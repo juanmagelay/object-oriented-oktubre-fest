@@ -1,4 +1,7 @@
+import personas.*
 import jarra.*
+import cervezas.*
+import carpa.*
 
 class Persona {
 	var property peso
@@ -17,5 +20,17 @@ class Persona {
 	}
 	method totalDeAlcohol() {
 		return jarrasCompradas.sum( { j => j.contenidoDeAlcohol() } )
+	}
+	method quiereEntrar(unaCarpa) {
+		return 
+			self.leGustan([unaCarpa.marcaVendida()]) == [unaCarpa.marcaVendida()] and
+			unaCarpa.musicaTradicional() == self.musicaTradicional()
+	}
+}
+
+class Aleman inherits Persona {
+	override method quiereEntrar(unaCarpa) {
+		return
+			super(unaCarpa) and (unaCarpa.cantidadDePersonas() % 2 == 0)
 	}
 }
