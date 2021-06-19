@@ -26,6 +26,25 @@ class Persona {
 			self.leGustan([unaCarpa.marcaVendida()]) == [unaCarpa.marcaVendida()] and
 			unaCarpa.musicaTradicional() == self.musicaTradicional()
 	}
+	method puedeEntrarA(unaCarpa) {
+		return 
+			self.quiereEntrar(unaCarpa) and
+			unaCarpa.dejarEntrar()
+	}
+	method entrarA(unaCarpa) {
+		if (self.puedeEntrarA(unaCarpa)) {
+			unaCarpa.cantidadDePersonas() == unaCarpa.cantidadDePersonas() + 1
+			unaCarpa.personas().add(self)
+		} else {
+			self.error("Pibe, con esas zapatillas no pasás.")
+		}
+	}
+	method esEbrioEmpedernido() {
+		return self.jarrasCompradas().all( { j => j.capacidadEnLt() >= 1 } )
+	}
+	method esPatriota() {
+		return self.jarrasCompradas().all( { j => j.marcaDeCerveza().pais() == self.nacionalidad() } )
+	}
 }
 
 class Aleman inherits Persona {

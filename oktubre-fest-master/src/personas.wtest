@@ -41,3 +41,33 @@ test "persona quiere entrar carpa" {
 	assert.that(p2.quiereEntrar(ca1))	
 	assert.notThat(p3.quiereEntrar(ca1)) //Porque la cantidad de personas de la carpa es impar.
 }
+
+test "persona puede entrar carpa" {
+	var c1 = new MarcaCerveza(lupuloPorLt = 5, pais = "Argentina", porcentajeAlcohol = 10)
+	var j1 = new Jarra(capacidadEnLt = 1, marcaDeCerveza = c1) //  0.1 * 1 = 0.1 
+	var ca1 = new Carpa(limiteGente = 2, cantidadDePersonas = 1, musicaTradicional = false, marcaVendida = c1)
+	var p2 = new Persona(musicaTradicional = false, nacionalidad = "belga", peso = 10, jarrasCompradas = [j1], nivelDeAguante = 10)
+	assert.equals(p2.leGustan([c1]), [c1])	
+	assert.that(p2.quiereEntrar(ca1))	
+	assert.that(p2.puedeEntrarA(ca1))
+}
+
+test "persona entra a carpa" {
+	var c1 = new MarcaCerveza(lupuloPorLt = 5, pais = "Argentina", porcentajeAlcohol = 10)
+	var ca1 = new Carpa(limiteGente = 1, cantidadDePersonas = 0, musicaTradicional = false, marcaVendida = c1)
+	var p2 = new Persona(musicaTradicional = false, nacionalidad = "belga", peso = 10, jarrasCompradas = [], nivelDeAguante = 10)
+	assert.equals(p2.leGustan([c1]), [c1])	
+	assert.that(p2.quiereEntrar(ca1))	
+	assert.that(p2.puedeEntrarA(ca1))
+	p2.entrarA(ca1)
+	assert.equals(ca1.personas().size(), 1)
+}
+
+test "es patriota" {
+	var c1 = new MarcaCerveza(lupuloPorLt = 5, pais = "argentina", porcentajeAlcohol = 10)
+	var c2 = new MarcaCerveza(lupuloPorLt = 5, pais = "argentina", porcentajeAlcohol = 10)
+	var j1 = new Jarra(capacidadEnLt = 1, marcaDeCerveza = c1) //  0.1 * 1 = 0.1 
+	var j2 = new Jarra(capacidadEnLt = 1, marcaDeCerveza = c2) //  0.1 * 1 = 0.1 
+	var p2 = new Persona(musicaTradicional = false, nacionalidad = "argentina", peso = 10, jarrasCompradas = [j1, j2], nivelDeAguante = 10)
+	assert.that(p2.esPatriota())
+}

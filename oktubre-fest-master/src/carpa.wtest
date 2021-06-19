@@ -1,0 +1,34 @@
+import carpa.*
+import cervezas.*
+import jarra.*
+import personas.*
+
+test "carpa dejar entrar" {
+	var c1 = new MarcaCerveza(pais = "Argentina", porcentajeAlcohol = 10)
+	var car1 = new Carpa(limiteGente = 2, musicaTradicional = false, marcaVendida = c1, cantidadDePersonas = 2)
+	assert.notThat(car1.dejarEntrar())
+}
+
+test "carpa sirve jarra" {
+	var c1 = new MarcaCerveza(pais = "Argentina", porcentajeAlcohol = 10)
+	var p2 = new Persona(musicaTradicional = false, nacionalidad = "belga", peso = 10, jarrasCompradas = [], nivelDeAguante = 10)
+	var car1 = new Carpa(limiteGente = 2, musicaTradicional = false, marcaVendida = c1, cantidadDePersonas = 2, personas = [p2])	
+	car1.servirJarraADe(p2, 10)
+	assert.equals(p2.jarrasCompradas().get(0).capacidadEnLt(), 10)
+}
+
+test "ebrios empedernidos" {
+	var c1 = new MarcaCerveza(lupuloPorLt = 5, pais = "Argentina", porcentajeAlcohol = 10)
+	var j1 = new Jarra(capacidadEnLt = 1, marcaDeCerveza = c1)
+	var j2 = new Jarra(capacidadEnLt = 3, marcaDeCerveza = c1)
+	var j3 = new Jarra(capacidadEnLt = 0.5, marcaDeCerveza = c1)
+	var p1 = new Persona(musicaTradicional = false, nacionalidad = "belga", peso = 10, jarrasCompradas = [j1, j2, j3], nivelDeAguante = 10)
+	var p2 = new Persona(musicaTradicional = false, nacionalidad = "belga", peso = 10, jarrasCompradas = [j3], nivelDeAguante = 10)
+	var p3 = new Persona(musicaTradicional = false, nacionalidad = "belga", peso = 10, jarrasCompradas = [j2], nivelDeAguante = 10)
+	var ca1 = new Carpa(limiteGente = 3, cantidadDePersonas = 3, musicaTradicional = false, marcaVendida = c1, personas = [p1, p2, p3])
+	assert.equals(ca1.cuantosEbriosEmpedernidos(), 1) // Porque p1 compro las 3 jarras, y j2 tiene medio litro.
+}
+
+test "patriotas" {
+	
+}
