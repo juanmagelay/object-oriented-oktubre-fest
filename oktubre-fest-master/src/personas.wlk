@@ -8,9 +8,9 @@ class Persona {
 	const property jarrasCompradas = []
 	var property musicaTradicional = false
 	var property nivelDeAguante = 0
-	var property nacionalidad = "argentina"
+	var property nacionalidad = "argentina" //ponerlo como abstracto
 	method estaEbria() {
-		return (self.totalDeAlcohol() * peso) > nivelDeAguante
+		return (self.totalDeAlcohol() * self.peso()) > nivelDeAguante
 	}	
 	method leGustan(marcas) {
 		return
@@ -33,7 +33,7 @@ class Persona {
 	}
 	method entrarA(unaCarpa) {
 		if (self.puedeEntrarA(unaCarpa)) {
-			unaCarpa.cantidadDePersonas() == unaCarpa.cantidadDePersonas() + 1
+			unaCarpa.cantidadDePersonas() == unaCarpa.cantidadDePersonas() + 1 //esto es mejor con un metodo en la carpa registrarIngreso(self)
 			unaCarpa.personas().add(self)
 		} else {
 			self.error("Pibe, con esas zapatillas no pasás.")
@@ -45,9 +45,20 @@ class Persona {
 	method esPatriota() {
 		return self.jarrasCompradas().all( { j => j.marcaDeCerveza().pais() == self.nacionalidad() } )
 	}
+	method esCompatible(unaPersona) { //NUEVO
+		const comunes = self.marcasQueCompro().intersection(unaPersona.marcasQueCompro())
+		return comunes.size() > self.marcasQueCompro().size().min(unaPersona.marcasQueCompro().size())	
+	}
+	method marcasQueCompro() {
+		return jarrasCompradas.map( { j => j.marcaDeCerveza() } ).asSet()
+	}
+	method enQueCarpasEstuve() {
+		return jarrasCompradas.map( { j => j.carpaQueLaSirvio() } ).asSet()
+	}
 }
-
+//PASAR TODAS LAS NACIONALIDADES A CLASES HIJAS DE PERSONAS
 class Aleman inherits Persona {
+	//AGREGAR EL LEGUSTA(UNAMARCA)
 	override method quiereEntrar(unaCarpa) {
 		return
 			super(unaCarpa) and (unaCarpa.cantidadDePersonas() % 2 == 0)
