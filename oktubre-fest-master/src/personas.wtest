@@ -10,10 +10,11 @@ test "belga" {
 	assert.that(belga1.leGusta(rubia1)) //10 > 4
 }
 
-test "aleman quiere entrar" {
+test "aleman quiere entrar y no lo dejan" {
 	var rubia1 = new Rubia(lupulosPorLt = 10, pais = "Argentina", graduacionRubia = 0.1)
 	var jarra1 = new Jarra(capacidad = 10, marca = rubia1)
 	var aleman1 = new Aleman(peso = 10, jarrasCompradas = [jarra1, jarra1], leGustaMusica = false, aguante = 10)	
 	var carpa1 = new Carpa(limiteGente = 2, musicaTradicional = false, marcaVendida = rubia1)
 	assert.that(aleman1.quiereEntrarA(carpa1))
+	assert.notThat(carpa1.dejaIngresarA(aleman1)) //estaEbria() //2 * 10 = 20 > 10
 }

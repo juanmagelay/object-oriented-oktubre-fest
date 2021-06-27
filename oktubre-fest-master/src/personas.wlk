@@ -49,4 +49,10 @@ class Carpa {
 	const property musicaTradicional
 	const property marcaVendida
 	const property personas = []
+	
+	method dejaIngresarA(unaPersona) {
+		return
+			self.limiteGente() > self.personas().size() and
+			not unaPersona.estaEbria()
+	}
 }
