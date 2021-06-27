@@ -17,4 +17,5 @@ test "aleman quiere entrar y no lo dejan" {
 	var carpa1 = new Carpa(limiteGente = 2, musicaTradicional = false, marcaVendida = rubia1)
 	assert.that(aleman1.quiereEntrarA(carpa1))
 	assert.notThat(carpa1.dejaIngresarA(aleman1)) //estaEbria() //2 * 10 = 20 > 10
+	assert.notThat(aleman1.puedeIngresarA(carpa1))//quiereEntrarA(), not dejaIngresarA()
 }

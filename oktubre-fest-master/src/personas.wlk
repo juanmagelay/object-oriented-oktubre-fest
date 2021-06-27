@@ -21,6 +21,12 @@ class Persona {
 			self.leGusta(unaCarpa.marcaVendida()) and
 			self.leGustaMusica() == unaCarpa.musicaTradicional()
 	}
+	
+	method puedeIngresarA(unaCarpa) {
+		return
+			self.quiereEntrarA(unaCarpa) and
+			unaCarpa.dejaIngresarA(self)
+	}
 }
 
 class Belga inherits Persona {
