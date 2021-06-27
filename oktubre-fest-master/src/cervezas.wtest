@@ -1,0 +1,19 @@
+import cervezas.*
+
+test "rubia" {
+	var rubia1 = new Rubia(lupulosPorLt = 10, pais = "Argentina", graduacionRubia = 10)
+	assert.equals(rubia1.graduacion(), 10)
+}
+
+test "negra" {
+	graduacionReglamentaria.graduacion(10) //10
+	var negra1 = new Negra(lupulosPorLt = 10, pais = "Argentina") //10*2 = 20
+	assert.equals(negra1.graduacion(), 10) 
+}
+
+test "roja" {
+	graduacionReglamentaria.graduacion(10) //10
+	var roja1 = new Roja(lupulosPorLt = 2, pais = "Argentina") //2*2 = 4
+	assert.equals(roja1.graduacion(), 5) //4*1.25
+}
+
