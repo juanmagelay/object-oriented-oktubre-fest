@@ -1,8 +1,0 @@
-import jarra.*
-import cervezas.*
-
-test "jarra" {
-	var c1 = new MarcaCervezaRubia(pais = "alemania", graduacionPorLt = 0.08, nombre = "Hofbrau")
-	var j1 = new Jarra(capacidadEnLt = 0.5, marcaDeCerveza = c1)
-	assert.equals(j1.contenidoDeAlcohol(), 0.04)
-}
