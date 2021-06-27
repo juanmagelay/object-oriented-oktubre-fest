@@ -27,6 +27,14 @@ class Persona {
 			self.quiereEntrarA(unaCarpa) and
 			unaCarpa.dejaIngresarA(self)
 	}
+	
+	method ingresarA(unaCarpa) {
+		if (not self.puedeIngresarA(unaCarpa)) {
+			self.error("Qué bajón")
+		} else {
+			unaCarpa.hacerIngresarA(self)	
+		}
+	}
 }
 
 class Belga inherits Persona {
@@ -60,5 +68,9 @@ class Carpa {
 		return
 			self.limiteGente() > self.personas().size() and
 			not unaPersona.estaEbria()
+	}
+	
+	method hacerIngresarA(unaPersona) {
+		self.personas().add(unaPersona)
 	}
 }
