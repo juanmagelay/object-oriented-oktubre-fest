@@ -5,6 +5,7 @@ class Persona {
 	const property jarrasCompradas = []
 	const property leGustaMusica
 	const property aguante
+	var property carpaActual = "Ninguna"
 	
 	method alcoholIngerido() {
 		return self.jarrasCompradas().sum( { j => j.contenidoAlcohol() } )
@@ -33,7 +34,12 @@ class Persona {
 			self.error("Qué bajón")
 		} else {
 			unaCarpa.hacerIngresarA(self)	
+			self.carpaActual(unaCarpa)
 		}
+	}
+	
+	method agarrarJarraServida(unaJarra) {
+		self.jarrasCompradas().add(unaJarra)
 	}
 }
 
@@ -72,5 +78,13 @@ class Carpa {
 	
 	method hacerIngresarA(unaPersona) {
 		self.personas().add(unaPersona)
+	}
+	
+	method servirJarraDeA(unaCapacidad, unaPersona) {
+		if (unaPersona.carpaActual() != self) {
+			self.error("No le podemos servir porque no está.")
+		} else {
+			unaPersona.agarrarJarraServida(new Jarra(capacidad = unaCapacidad, marca = self.marcaVendida()))	
+		}
 	}
 }

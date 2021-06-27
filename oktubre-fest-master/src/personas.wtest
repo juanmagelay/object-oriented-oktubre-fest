@@ -32,3 +32,13 @@ test "belga quiere entrar y lo dejan" {
 	belga1.ingresarA(carpa1)
 	assert.equals(carpa1.personas().size(), 1)
 }
+
+test "al belga le sirven jarra" {
+	var rubia1 = new Rubia(lupulosPorLt = 10, pais = "Argentina", graduacionRubia = 0.1)
+	var jarra1 = new Jarra(capacidad = 10, marca = rubia1)
+	var belga1 = new Belga(peso = 1, jarrasCompradas = [jarra1, jarra1], leGustaMusica = false, aguante = 10)	
+	var carpa1 = new Carpa(limiteGente = 2, musicaTradicional = false, marcaVendida = rubia1)
+	belga1.ingresarA(carpa1)
+	carpa1.servirJarraDeA(10, belga1)
+	assert.equals(belga1.jarrasCompradas().size(), 3)
+}
