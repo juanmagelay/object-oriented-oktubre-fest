@@ -1,3 +1,6 @@
+import personas.*
+import carpas.*
+
 class MarcaDeCerveza {
 	const property lupulosPorLt
 	const property pais

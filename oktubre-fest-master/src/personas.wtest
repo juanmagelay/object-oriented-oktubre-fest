@@ -1,5 +1,6 @@
 import personas.*
 import cervezas.*
+import carpas.*
 
 test "belga" {
 	var rubia1 = new Rubia(lupulosPorLt = 10, pais = "Argentina", graduacionRubia = 0.1)
