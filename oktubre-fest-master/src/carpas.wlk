@@ -24,4 +24,8 @@ class Carpa {
 			unaPersona.agarrarJarraServida(new Jarra(capacidad = unaCapacidad, marca = self.marcaVendida()))	
 		}
 	}
+	
+	method cuantosEmpedernidos() {
+		return self.personas().count( { p => p.esEmpedernido() } )
+	}
 }

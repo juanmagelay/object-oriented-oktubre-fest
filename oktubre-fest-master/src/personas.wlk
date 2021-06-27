@@ -42,6 +42,10 @@ class Persona {
 	method agarrarJarraServida(unaJarra) {
 		self.jarrasCompradas().add(unaJarra)
 	}
+	
+	method esEmpedernido() {
+		return self.jarrasCompradas().all( { j => j.capacidad() >= 1 } )
+	}
 }
 
 class Belga inherits Persona {
