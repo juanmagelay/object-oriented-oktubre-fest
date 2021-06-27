@@ -1,0 +1,11 @@
+import personas.*
+import cervezas.*
+
+test "belga" {
+	var rubia1 = new Rubia(lupulosPorLt = 10, pais = "Argentina", graduacionRubia = 0.1)
+	var jarra1 = new Jarra(capacidad = 10, marca = rubia1)
+	var belga1 = new Belga(peso = 10, jarrasCompradas = [jarra1, jarra1], leGustaMusica = false, aguante = 10)
+	assert.equals(belga1.alcoholIngerido(), 2) //(10 * 0.1)*2
+	assert.that(belga1.estaEbria()) //2 * 10 = 20 > 10
+	assert.that(belga1.leGusta(rubia1)) //10 > 4
+}

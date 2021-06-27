@@ -23,3 +23,12 @@ class Roja inherits Negra {
 object graduacionReglamentaria {
 	var property graduacion	
 }
+
+class Jarra {
+	const property capacidad	
+	const property marca
+	
+	method contenidoAlcohol() {
+		return self.capacidad() * self.marca().graduacion()
+	}
+}
