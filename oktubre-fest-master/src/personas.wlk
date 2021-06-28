@@ -40,8 +40,9 @@ class Persona {
 		}
 	}
 	
-	method agarrarJarraServida(unaJarra) {
+	method agarrarJarraServidaEnCarpa(unaJarra, unaCarpa) {
 		self.jarrasCompradas().add(unaJarra)
+		unaJarra.servidaEnCarpa(unaCarpa)
 	}
 	
 	method esEmpedernido() {
@@ -50,6 +51,29 @@ class Persona {
 	
 	method esPatriota() {
 		return self.jarrasCompradas().all( { j => j.marca().pais() == self.nacionalidad() } )
+	}
+	
+	method esCompatibleCon(unaPersona) {
+		return 
+			(self.coincidenciasDeMarcasCon(unaPersona).size() > 
+			self.cantidadIncoincidenciasDeMarcasCon(self, unaPersona))
+			and
+			(self.coincidenciasDeMarcasCon(unaPersona).size() > 
+			self.cantidadIncoincidenciasDeMarcasCon(unaPersona, self))
+	}
+	
+	method marcasCompradas() {
+		return self.jarrasCompradas().map( { j => j.marca() } ).asSet()
+	}
+	
+	method coincidenciasDeMarcasCon(unaPersona) {
+		return self.marcasCompradas().intersection(unaPersona.marcasCompradas())
+	}
+	
+	method cantidadIncoincidenciasDeMarcasCon(persona1, persona2) {
+		return 
+			persona1.marcasCompradas().size() - 
+			persona1.coincidenciasDeMarcasCon(persona2).size()
 	}
 }
 

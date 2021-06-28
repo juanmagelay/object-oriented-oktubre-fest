@@ -28,4 +28,8 @@ class Carpa {
 	method cuantosEmpedernidos() {
 		return self.personas().count( { p => p.esEmpedernido() } )
 	}
+	
+	method esHomogenea() {
+		return self.personas().map( { p => p.nacionalidad() } ).asSet().size() == 1
+	}
 }

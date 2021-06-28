@@ -30,6 +30,7 @@ object graduacionReglamentaria {
 class Jarra {
 	const property capacidad	
 	const property marca
+	var property servidaEnCarpa = "Ninguna"
 	
 	method contenidoAlcohol() {
 		return self.capacidad() * self.marca().graduacion()
